@@ -1,0 +1,4 @@
+SET @idx := -1;
+SELECT ROUND(AVG(NEW_TABLE.LAT_N),4)
+FROM (SELECT @idx:= @idx+1 AS idx, s.LAT_N from STATION AS s ORDER BY s.LAT_N) AS NEW_TABLE
+WHERE NEW_TABLE.idx in (FLOOR(@idx/2), CEIL(@idx/2));
